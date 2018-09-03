@@ -11,7 +11,7 @@ const Mongoose = require("mongoose");
 require("./Book");
 const Book = Mongoose.model("Book"); //.model("Book") make reference to the Book name model.
 
-//* Connect mongoose
+//* Connect mongoose *//
 Mongoose.connect(
   "mongodb://juancamiloqhz:juancamilo2018@ds233212.mlab.com:33212/books-microservice-example",
   { useNewUrlParser: true },
@@ -22,7 +22,7 @@ app.get("/", (req, res) => {
   res.send("This is our main Books endpoint!");
 });
 
-// Create books funtionality //
+//* Create books funtionality *//
 app.post("/book", (req, res) => {
   let newBook = {
     title: req.body.title,
@@ -44,6 +44,34 @@ app.post("/book", (req, res) => {
       }
     });
   res.send("A new book created with success!");
+});
+
+app.get("/books", (req, res) => {
+  Book.find()
+    .then(books => {
+      res.status(200).json(books);
+    })
+    .catch(err => {
+      if (err) {
+        throw err;
+      }
+    });
+});
+
+app.get("/book/:id", (req, res) => {
+  Book.findById({ _id: req.params.id })
+    .then(book => {
+      if (book) {
+        res.status(200).json(book);
+      } else {
+        res.status(404).json({ not_found: "Book not found!" });
+      }
+    })
+    .catch(err => {
+      if (err) {
+        throw err;
+      }
+    });
 });
 
 app.listen(4545, () => console.log("Books API running on port 4545..."));
