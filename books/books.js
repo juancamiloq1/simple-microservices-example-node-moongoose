@@ -15,7 +15,7 @@ const Book = Mongoose.model("Book"); //.model("Book") make reference to the Book
 Mongoose.connect(
   "mongodb://juancamiloqhz:juancamilo2018@ds233212.mlab.com:33212/books-microservice-example",
   { useNewUrlParser: true },
-  () => console.log("Database is connected!")
+  () => console.log("Books database is connected!")
 );
 
 app.get("/", (req, res) => {
