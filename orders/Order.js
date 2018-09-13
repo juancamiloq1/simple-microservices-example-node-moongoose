@@ -1,12 +1,12 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 mongoose.model("Order", {
-  CustomerID: {
-    type: mongoose.SchemaType.ObjectId,
+  customerID: {
+    type: mongoose.SchemaTypes.ObjectId,
     required: true
   },
-  BookID: {
-    type: mongoose.SchemaType.ObjectId,
+  bookID: {
+    type: mongoose.SchemaTypes.ObjectId,
     required: true
   },
   initialDate: {
@@ -17,4 +17,4 @@ mongoose.model("Order", {
     type: Date,
     required: true
   }
-})
+});
